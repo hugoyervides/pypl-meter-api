@@ -8,7 +8,7 @@ class Point:
 
 
 class Device:
-    def __init__(self, x=None, y=None, mac, dbm):
+    def __init__(self, mac, dbm, x=None, y=None):
         self.point = Point(x, y)
         self.mac = mac
         self.dbm = dbm
