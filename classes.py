@@ -3,12 +3,18 @@ class Point:
         self.x = x
         self.y = y
 
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+
 
 class Device:
-    def __init__(self, x, y, mac, dbm):
+    def __init__(self, x=None, y=None, mac, dbm):
         self.point = Point(x, y)
         self.mac = mac
         self.dbm = dbm
+
+    def __str__(self):
+        return f'{self.mac}: {str(self.point)}, {self.dbm}.'
 
 
 class Pi:
@@ -18,5 +24,12 @@ class Pi:
         self.point = Point(x, y)
         self.id = id
 
+    def remove(self, device):
+        self.devices.remove(device)
+
     def __str__(self):
-        return f'Pi #{self.id} at ({x}, {y}).'
+        return f'Pi #{self.id} at {str(self.point)}.'
+
+    def __iter__(self):
+        for device in self.devices:
+            yield device
