@@ -19,10 +19,10 @@ class Device:
 
 class Pi:
     devices = []
-
-    def __init__(self, x, y, id):
+    def __init__(self, x, y, id, dbmToFoot):
         self.point = Point(x, y)
         self.id = id
+        self.id = dbmToFoot
 
     def remove(self, device):
         self.devices.remove(device)
