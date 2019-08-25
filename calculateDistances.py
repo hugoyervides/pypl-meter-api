@@ -76,9 +76,6 @@ def calculateCordinates(pis):
     returnDevices = []
     x_max = 150
     y_max = 150
-    #Condicion para ver si tenemos mas de 3 puntos de centro
-    if len(pis) > 3:
-        return None
     #Calculamos los puntos de las Pis
     for pi in pis:
         for device in pi.devices:
@@ -93,7 +90,7 @@ def calculateCordinates(pis):
                                        result[1]['pi'].point, result[0]['device'].getRealDistance())
                     device.point = div_loc(loc, x_max, y_max)
                     returnDevices.append({'x': device.point.x, 'y': device.point.y})
-                elif len(result) == 3:
+                elif len(result) > 2:
                     #ALGORITMO PARA TRES PUNTOS
                     loc = trilateration(result[0]['pi'].point, result[0]['device'].getRealDistance(),
                                         result[1]['pi'].point,
