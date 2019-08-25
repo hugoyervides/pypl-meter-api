@@ -22,7 +22,7 @@ class Pi:
     def __init__(self, x, y, id, dbmToFoot):
         self.point = Point(x, y)
         self.id = id
-        self.id = dbmToFoot
+        self.dbmToFoot = dbmToFoot
 
     def remove(self, device):
         self.devices.remove(device)
@@ -33,3 +33,6 @@ class Pi:
     def __iter__(self):
         for device in self.devices:
             yield device
+
+    def getRealDistance(self,device):
+        return self.dbmToFoot * device.dbm
