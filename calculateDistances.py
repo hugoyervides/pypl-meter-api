@@ -1,10 +1,11 @@
 #Script para calcular las cordenadas de los dispositivos dentro del plano con la senal
+from classes import Point
 
 #Function de trilateration
 def trilateration(point1,r1,point2,r2,point3,r3):
   A = 2*point2.x - 2*point1.x
   B = 2*point2.y - 2*point1.y
-  C = r1**2 - r2**2 - pont1.x**2 + point2.x**2 - point1.y**2 + point2.y**2
+  C = r1**2 - r2**2 - point1.x**2 + point2.x**2 - point1.y**2 + point2.y**2
   D = 2*point3.x - 2*point2.x
   E = 2*point3.y - 2*point2.y
   F = r2**2 - r3**2 - point2.x**2 + point3.x**2 - point2.y**2 + point3.y**2
@@ -37,17 +38,17 @@ def calculateCordinates(pis):
                 visited.append(device)
                 result = findDevicesOnPis(pis,device)
                 #ver cual algoritmo usar
-                if result.len() == 2:
+                if len(result) == 2:
                     #ALGORITMO PARA DOS PUNTOS
-                    test = 1
-                elif result.len() == 3:
+                    pass
+
+                elif len(result) == 3:
                     #ALGORITMO PARA TRES PUNTOS
-                    loc = trilateration(result[0]['pi'].point,
-                                        result[0]['pi'].getRealDistance(result[0]['device'],
+                    loc = trilateration(result[0]['pi'].point, result[0]['device'].getRealDistance(),
                                         result[1]['pi'].point,
-                                        result[1]['pi'].getRealDistance(result[1]['device'],
+                                        result[1]['device'].getRealDistance(),
                                         result[2]['pi'].point,
-                                        result[2]['pi'].getRealDistance(result[2]['device'])
+                                        result[2]['device'].getRealDistance())
                     #Actualizar la loc del device para meterla en el resultado
                     device.point = loc
                     returnDevices.append(device)
