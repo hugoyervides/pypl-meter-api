@@ -39,8 +39,8 @@ def calculateCordinates(pis):
                 #ver cual algoritmo usar
                 if result.len() == 2:
                     #ALGORITMO PARA DOS PUNTOS
-
-                else if result.len() == 3:
+                    test = 1
+                elif result.len() == 3:
                     #ALGORITMO PARA TRES PUNTOS
                     loc = trilateration(result[0]['pi'].point,
                                         result[0]['pi'].getRealDistance(result[0]['device'],
